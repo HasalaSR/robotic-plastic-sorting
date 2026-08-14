@@ -11,9 +11,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width,
-                 initial-scale=1.0,
-                 viewport-fit=cover"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     <meta
@@ -96,7 +94,6 @@
             scroll-behavior: smooth;
 
             -webkit-text-size-adjust: 100%;
-
             text-size-adjust: 100%;
         }
 
@@ -127,7 +124,6 @@
             overflow-x: hidden;
 
             -webkit-font-smoothing: antialiased;
-
             -moz-osx-font-smoothing: grayscale;
         }
 
@@ -212,10 +208,14 @@
         /* ======================================================
            CASUAL IMAGE-SAVING DETERRENCE
 
-           NOTE:
-           This discourages casual right-click / drag saving.
-           It cannot prevent screenshots, developer tools,
-           network inspection, or retrieval of public files.
+           This discourages normal:
+           - right click
+           - drag to desktop
+           - image selection
+           - some long-press behaviours
+
+           It does NOT make a public web image impossible
+           to retrieve.
            ====================================================== */
 
         .protected-media {
@@ -225,7 +225,6 @@
             overflow: hidden;
 
             user-select: none;
-
             -webkit-user-select: none;
 
             -webkit-touch-callout: none;
@@ -237,7 +236,6 @@
             pointer-events: none;
 
             user-select: none;
-
             -webkit-user-select: none;
 
             -webkit-user-drag: none;
@@ -269,9 +267,7 @@
             position: fixed;
 
             top: 0;
-
             left: 0;
-
             right: 0;
 
             z-index: 1000;
@@ -293,7 +289,6 @@
                 rgba(255, 255, 255, 0.10);
 
             backdrop-filter: blur(12px);
-
             -webkit-backdrop-filter: blur(12px);
         }
 
@@ -1495,7 +1490,7 @@
 
 
         /* ======================================================
-           RESEARCHER
+           RESEARCHER AND TEAM
            ====================================================== */
 
         .researcher-grid {
@@ -1504,9 +1499,9 @@
 
             grid-template-columns:
                 minmax(0, 1fr)
-                minmax(280px, 0.8fr);
+                minmax(300px, 0.85fr);
 
-            gap: 45px;
+            gap: 42px;
 
             align-items: start;
         }
@@ -1554,13 +1549,13 @@
 
             grid-template-columns:
                 repeat(
-                    2,
+                    3,
                     minmax(0, 1fr)
                 );
 
             gap: 12px;
 
-            margin-top: 25px;
+            margin-top: 6px;
         }
 
 
@@ -1593,12 +1588,18 @@
             font-size: 0.91rem;
 
             font-weight: 750;
+
+            transition:
+                border-color 0.15s ease,
+                transform 0.15s ease;
         }
 
 
         .profile-link:hover {
 
             border-color: var(--navy);
+
+            transform: translateY(-1px);
         }
 
 
@@ -1606,9 +1607,102 @@
 
             margin-top: 24px;
 
+            margin-bottom: 0;
+
             color: var(--blue-grey);
 
             font-size: 0.87rem;
+        }
+
+
+        /* ======================================================
+           TEAM CARDS
+           ====================================================== */
+
+        .team-block {
+
+            margin-top: 60px;
+        }
+
+
+        .team-heading {
+
+            margin:
+                0 0 10px;
+
+            color: var(--navy);
+
+            font-size:
+                clamp(
+                    1.55rem,
+                    3vw,
+                    2rem
+                );
+
+            font-weight: 800;
+        }
+
+
+        .team-intro {
+
+            max-width: 760px;
+
+            margin-bottom: 27px;
+
+            color: var(--blue-grey);
+
+            font-size: 0.98rem;
+
+            line-height: 1.6;
+        }
+
+
+        .team-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    minmax(0, 1fr)
+                );
+
+            gap: 16px;
+        }
+
+
+        .team-member {
+
+            min-height: 105px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 21px 20px;
+
+            background: var(--white);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 31, 69, 0.045);
+        }
+
+
+        .team-member-name {
+
+            color: var(--navy);
+
+            font-size: 1rem;
+
+            line-height: 1.35;
+
+            font-weight: 750;
         }
 
 
@@ -1699,17 +1793,28 @@
                     repeat(2, 1fr);
             }
 
+
+            .team-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(0, 1fr)
+                    );
+            }
+
         }
 
 
         /* ======================================================
-           MOBILE NAVIGATION / MOBILE LAYOUT
+           MOBILE NAVIGATION / TABLETS
            ====================================================== */
 
         @media
         (max-width: 820px) {
 
             :root {
+
                 --nav-height: 62px;
             }
 
@@ -1738,7 +1843,6 @@
                     );
 
                 left: 0;
-
                 right: 0;
 
                 display: none;
@@ -2052,6 +2156,28 @@
             .profile-links {
 
                 grid-template-columns: 1fr;
+
+                margin-top: 0;
+            }
+
+
+            .team-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .team-member {
+
+                min-height: 0;
+
+                padding: 18px;
+            }
+
+
+            .team-block {
+
+                margin-top: 48px;
             }
 
         }
@@ -2089,13 +2215,14 @@
 
 
         /* ======================================================
-           REDUCED MOTION
+           REDUCED MOTION ACCESSIBILITY
            ====================================================== */
 
         @media
         (prefers-reduced-motion: reduce) {
 
             html {
+
                 scroll-behavior: auto;
             }
 
@@ -2193,8 +2320,8 @@
                 Outputs
             </a>
 
-            <a href="#researcher">
-                Researcher
+            <a href="#team">
+                Team
             </a>
 
         </div>
@@ -2216,7 +2343,7 @@
     <div class="hero-background">
 
         <img
-            src="assets/gallery/robot-system.jpg"
+            src="assets/robot-system.jpg"
             alt=""
             aria-hidden="true"
             draggable="false"
@@ -2554,7 +2681,9 @@
         </p>
 
 
-        <!-- SYSTEM OVERVIEW -->
+        <!-- =================================================
+             SYSTEM OVERVIEW
+             ================================================= -->
 
         <h3 class="gallery-group-title">
             System Overview
@@ -2663,7 +2792,9 @@
         </div>
 
 
-        <!-- ARCHITECTURE -->
+        <!-- =================================================
+             ARCHITECTURE AND LAYOUT
+             ================================================= -->
 
         <h3 class="gallery-group-title">
             Architecture and Layout
@@ -2739,7 +2870,9 @@
         </div>
 
 
-        <!-- VISION -->
+        <!-- =================================================
+             VISION AND COMPUTING
+             ================================================= -->
 
         <h3 class="gallery-group-title">
             Vision and Computing
@@ -2815,7 +2948,9 @@
         </div>
 
 
-        <!-- GRIPPER -->
+        <!-- =================================================
+             ROBOTIC MANIPULATION
+             ================================================= -->
 
         <h3 class="gallery-group-title">
             Robotic Manipulation
@@ -2860,7 +2995,9 @@
         </div>
 
 
-        <!-- HARDWARE -->
+        <!-- =================================================
+             CONVEYOR AND CONTROL HARDWARE
+             ================================================= -->
 
         <h3 class="gallery-group-title">
             Conveyor, Pneumatic and Control Hardware
@@ -3093,9 +3230,7 @@
         <!-- ==================================================
              WHEN THE YOUTUBE VIDEO IS READY:
 
-             Delete the entire "video-card" above.
-
-             Then use:
+             Delete the "video-card" above and insert:
 
         <div class="video-wrapper">
 
@@ -3117,7 +3252,7 @@
 
         </div>
 
-             Replace VIDEO_ID with the actual YouTube ID.
+             Replace VIDEO_ID with the actual YouTube video ID.
              ================================================== -->
 
     </div>
@@ -3289,23 +3424,27 @@
 
 
 <!-- =========================================================
-     RESEARCHER
+     RESEARCHER AND TEAM
      ========================================================= -->
 
-<section id="researcher">
+<section id="team">
 
     <div class="section-inner">
 
 
         <div class="section-label">
-            Researcher
+            Research Team
         </div>
 
 
         <h2>
-            Researcher and Professional Profiles
+            Researcher and Team
         </h2>
 
+
+        <!-- =================================================
+             PRIMARY RESEARCHER
+             ================================================= -->
 
         <div class="researcher-grid">
 
@@ -3332,7 +3471,7 @@
 
                     For research enquiries, collaborations,
                     publications and further information,
-                    please use one of the verified professional
+                    please use the verified professional
                     profiles provided here.
 
                 </p>
@@ -3376,20 +3515,92 @@
                 </a>
 
 
-                <a
-                    class="profile-link"
-                    href="https://github.com/HasalaSR"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open GitHub profile"
-                >
-                    GitHub
-                </a>
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             TEAM MEMBERS
+             ================================================= -->
+
+        <div class="team-block">
+
+
+            <h3 class="team-heading">
+                Research Team
+            </h3>
+
+
+            <p class="team-intro">
+
+                The research team contributing to the
+                development and evaluation of this work includes:
+
+            </p>
+
+
+            <div class="team-grid">
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Gihan Ruwanpathirana
+                    </span>
+
+                </article>
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Sadeep Thilakarathna
+                    </span>
+
+                </article>
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Jude Shalitha Perera
+                    </span>
+
+                </article>
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Nuwan Wijesinghe
+                    </span>
+
+                </article>
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Priyan Mendis
+                    </span>
+
+                </article>
+
+
+                <article class="team-member">
+
+                    <span class="team-member-name">
+                        Shanaka Kristombu Baduge
+                    </span>
+
+                </article>
 
 
             </div>
 
         </div>
+
 
     </div>
 
@@ -3558,15 +3769,6 @@
 
     /* ========================================================
        CASUAL IMAGE-SAVING DETERRENCE
-
-       This does NOT make public web images impossible
-       to retrieve.
-
-       It only blocks common casual behaviours such as:
-       - right-click Save Image As
-       - image drag-to-desktop
-       - normal image selection
-       - some mobile long-press behaviour
        ======================================================== */
 
     document
