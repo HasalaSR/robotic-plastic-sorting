@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="AI-driven robotic sorting of real post-consumer plastic waste using deep learning and an industrial delta robot.">
+
+    <title>
+        AI-Driven Robotic Plastic Waste Sorting
+    </title>
+
+    <style>
+
+        /* =====================================================
+           FEIT POSTER COLOUR PALETTE
+           ===================================================== */
+
+        :root {
+            --navy: #002B5C;
+            --dark-navy: #001F45;
+            --ink: #0B1F3A;
+
+            --green: #2E8B3C;
+            --light-green: #EAF6EA;
+
+            --orange: #F26A21;
+            --light-orange: #FFF0E6;
+
+            --grey: #B8B8B8;
+            --light-grey: #F5F7FA;
+
+            --white: #FFFFFF;
+
+            --max-width: 1100px;
+        }
+
+
+        /* =====================================================
+           GLOBAL
+           ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+
+            font-family:
+                Aptos,
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--ink);
+            background: var(--white);
+
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           HEADER
+           ===================================================== */
+
+        header {
+            background: var(--navy);
+            color: var(--white);
+
+            padding: 70px 24px 60px;
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-size: 0.95rem;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+
+            opacity: 0.85;
+
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(
+                2.3rem,
+                6vw,
+                4.6rem
+            );
+
+            line-height: 1.05;
+
+            max-width: 900px;
+
+            margin:
+                0 0 22px;
+
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: clamp(
+                1.1rem,
+                2vw,
+                1.45rem
+            );
+
+            max-width: 780px;
+
+            margin: 0;
+
+            opacity: 0.95;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
+
+        nav {
+            background: var(--dark-navy);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 10;
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+
+            margin: 0 auto;
+
+            padding: 12px 24px;
+
+            display: flex;
+
+            gap: 22px;
+
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-size: 0.95rem;
+
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           GENERAL LAYOUT
+           ===================================================== */
+
+        main {
+            width: 100%;
+        }
+
+        section {
+            padding: 65px 24px;
+        }
+
+        .section-inner {
+            max-width: var(--max-width);
+
+            margin: 0 auto;
+        }
+
+        .alternate {
+            background: var(--light-grey);
+        }
+
+        h2 {
+            color: var(--navy);
+
+            font-size: clamp(
+                1.8rem,
+                4vw,
+                2.5rem
+            );
+
+            line-height: 1.2;
+
+            margin:
+                0 0 25px;
+        }
+
+        h3 {
+            color: var(--navy);
+
+            margin-top: 0;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+
+            max-width: 850px;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+           ===================================================== */
+
+        .buttons {
+            display: flex;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-block;
+
+            background: var(--navy);
+
+            color: var(--white);
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 5px;
+
+            font-weight: 700;
+        }
+
+        .button:hover {
+            background: var(--dark-navy);
+        }
+
+        .button-green {
+            background: var(--green);
+        }
+
+        .button-orange {
+            background: var(--orange);
+        }
+
+
+        /* =====================================================
+           HERO IMAGE
+           ===================================================== */
+
+        .hero-image {
+            margin-top: 35px;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            border: 1px solid #D7DDE5;
+
+            background: var(--light-grey);
+        }
+
+        .hero-image img {
+            width: 100%;
+
+            max-height: 560px;
+
+            object-fit: cover;
+        }
+
+
+        /* =====================================================
+           KEY METRICS
+           ===================================================== */
+
+        .metrics {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(190px, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-top: 32px;
+        }
+
+        .metric {
+            border:
+                1px solid #DDE3EA;
+
+            border-radius: 7px;
+
+            padding: 25px;
+
+            background: var(--white);
+        }
+
+        .metric-number {
+            display: block;
+
+            color: var(--green);
+
+            font-size: 2.1rem;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+        .metric-caution {
+            color: var(--orange);
+        }
+
+        .metric-label {
+            color: var(--ink);
+
+            font-size: 0.95rem;
+        }
+
+
+        /* =====================================================
+           VIDEO
+           ===================================================== */
+
+        .video-placeholder {
+            background: var(--dark-navy);
+
+            color: var(--white);
+
+            min-height: 330px;
+
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+        .video-placeholder strong {
+            display: block;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 8px;
+        }
+
+        .video-wrapper {
+            position: relative;
+
+            padding-bottom: 56.25%;
+
+            height: 0;
+
+            overflow: hidden;
+
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+
+        /* =====================================================
+           RESOURCE CARDS
+           ===================================================== */
+
+        .resource-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(230px, 1fr)
+                );
+
+            gap: 18px;
+
+            margin-top: 30px;
+        }
+
+        .resource {
+            border:
+                1px solid #DDE3EA;
+
+            border-radius: 7px;
+
+            padding: 24px;
+
+            background: var(--white);
+        }
+
+        .resource p {
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           TAKEAWAY
+           ===================================================== */
+
+        .takeaway {
+            background: var(--dark-navy);
+
+            color: var(--white);
+
+            padding: 45px;
+
+            border-radius: 8px;
+        }
+
+        .takeaway h2 {
+            color: var(--white);
+        }
+
+        .takeaway strong {
+            color: #FFFFFF;
+
+            font-size: 1.3rem;
+        }
+
+
+        /* =====================================================
+           CONTACT
+           ===================================================== */
+
+        .contact-box {
+            border-left:
+                5px solid var(--navy);
+
+            padding-left: 22px;
+
+            margin-top: 25px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            background: var(--dark-navy);
+
+            color: var(--white);
+
+            text-align: center;
+
+            padding: 35px 24px;
+
+            font-size: 0.9rem;
+        }
+
+
+        /* =====================================================
+           SMALL SCREEN
+           ===================================================== */
+
+        @media (
+            max-width: 650px
+        ) {
+
+            header {
+                padding-top: 50px;
+            }
+
+            section {
+                padding:
+                    48px 20px;
+            }
+
+            .takeaway {
+                padding: 30px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="eyebrow">
+            Research Project
+        </div>
+
+        <h1>
+            AI Can See the Plastic.
+            But Can the Robot Pick It?
+        </h1>
+
+        <p class="subtitle">
+            End-to-end evaluation of deep-learning perception
+            and industrial robotic manipulation for sorting
+            real post-consumer plastic waste.
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     NAVIGATION
+     ========================================================= -->
+
+<nav>
+
+    <div class="nav-inner">
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#results">
+            Key Results
+        </a>
+
+        <a href="#video">
+            Video
+        </a>
+
+        <a href="#outputs">
+            Research Outputs
+        </a>
+
+        <a href="#team">
+            Team
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main>
+
+
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+
+<section id="about">
+
+    <div class="section-inner">
+
+        <h2>
+            About the Research
+        </h2>
+
+        <p class="lead">
+            This research investigates how accurately
+            artificial-intelligence-based object detection
+            translates into successful physical sorting
+            when integrated with an industrial delta robot
+            operating on a moving conveyor.
+        </p>
+
+        <p>
+            The system was developed using real
+            post-consumer waste and evaluates the complete
+            perception-to-action pipeline rather than
+            considering computer-vision accuracy alone.
+        </p>
+
+
+        <div class="hero-image">
+
+            <!-- Replace this file later with your robot image -->
+
+            <img
+                src="assets/robot-system.jpg"
+                alt="Industrial robotic plastic waste sorting system"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RESULTS
+     ========================================================= -->
+
+<section
+    id="results"
+    class="alternate"
+>
+
+    <div class="section-inner">
+
+        <h2>
+            Key Results
+        </h2>
+
+        <p class="lead">
+            High perception accuracy did not automatically
+            produce high physical recovery. Mechanical
+            execution, grasping and system timing remained
+            critical determinants of overall performance.
+        </p>
+
+
+        <div class="metrics">
+
+            <div class="metric">
+
+                <span class="metric-number">
+                    20,100
+                </span>
+
+                <span class="metric-label">
+                    Annotated images used in the experimental dataset
+                </span>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-number">
+                    0.601
+                </span>
+
+                <span class="metric-label">
+                    YOLOv11m validation mAP@0.5
+                </span>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-number">
+                    0.88 m/s
+                </span>
+
+                <span class="metric-label">
+                    Experimentally validated conveyor speed
+                </span>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-number metric-caution">
+                    22.7–44.0%
+                </span>
+
+                <span class="metric-label">
+                    Robotic recovery across the five evaluated target categories
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     VIDEO
+     ========================================================= -->
+
+<section id="video">
+
+    <div class="section-inner">
+
+        <h2>
+            System Demonstration
+        </h2>
+
+        <p>
+            A short demonstration of the complete
+            perception-to-action robotic sorting system
+            will be added here.
+        </p>
+
+
+        <!-- =================================================
+             FOR NOW
+             ================================================= -->
+
+        <div class="video-placeholder">
+
+            <div>
+
+                <strong>
+                    Demonstration video coming soon
+                </strong>
+
+                The video can be added later without
+                changing the QR code printed on the poster.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LATER:
+
+             Delete the placeholder above and uncomment
+             this block.
+
+             Replace VIDEO_ID with the YouTube video ID.
+
+        <div class="video-wrapper">
+
+            <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="Robotic plastic sorting demonstration"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        ================================================= -->
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OUTPUTS
+     ========================================================= -->
+
+<section
+    id="outputs"
+    class="alternate"
+>
+
+    <div class="section-inner">
+
+        <h2>
+            Research Outputs
+        </h2>
+
+
+        <div class="resource-grid">
+
+
+            <!-- POSTER -->
+
+            <div class="resource">
+
+                <h3>
+                    Research Poster
+                </h3>
+
+                <p>
+                    Download the poster presented at the
+                    FEIT Graduate Research Showcase.
+                </p>
+
+                <a
+                    class="button"
+                    href="assets/poster.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Poster
+                </a>
+
+            </div>
+
+
+            <!-- DATASET -->
+
+            <div class="resource">
+
+                <h3>
+                    Dataset
+                </h3>
+
+                <p>
+                    Access the project dataset and
+                    associated documentation.
+                </p>
+
+                <a
+                    class="button button-green"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Dataset
+                </a>
+
+            </div>
+
+
+            <!-- PUBLICATION -->
+
+            <div class="resource">
+
+                <h3>
+                    Publication
+                </h3>
+
+                <p>
+                    Access the associated research paper
+                    when publicly available.
+                </p>
+
+                <a
+                    class="button"
+                    href="#"
+                >
+                    Publication Coming Soon
+                </a>
+
+            </div>
+
+
+            <!-- ADDITIONAL MATERIAL -->
+
+            <div class="resource">
+
+                <h3>
+                    Additional Material
+                </h3>
+
+                <p>
+                    Supplementary project files, videos
+                    and related resources.
+                </p>
+
+                <a
+                    class="button button-orange"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Resources
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TAKEAWAY
+     ========================================================= -->
+
+<section>
+
+    <div class="section-inner">
+
+        <div class="takeaway">
+
+            <h2>
+                Key Takeaway
+            </h2>
+
+            <strong>
+                Deployment readiness is a chain property.
+            </strong>
+
+            <p>
+                Reliable robotic sorting requires perception,
+                tracking, timing, grasping and manipulation
+                to perform effectively as one integrated
+                system.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TEAM
+     ========================================================= -->
+
+<section id="team">
+
+    <div class="section-inner">
+
+        <h2>
+            Research Team
+        </h2>
+
+        <div class="contact-box">
+
+            <strong>
+                Hasala Pitiduwa Gamage
+            </strong>
+
+            <br>
+
+            PhD Researcher
+
+            <br>
+
+            University of Melbourne
+
+            <br><br>
+
+            Email:
+            <a href="mailto:YOUR_EMAIL">
+                YOUR_EMAIL
+            </a>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <a
+                class="button"
+                href="YOUR_GITHUB_PROFILE_URL"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub Profile
+            </a>
+
+            <a
+                class="button"
+                href="YOUR_RESEARCH_PROFILE_URL"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Research Profile
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    <p>
+        AI-Driven Robotic Plastic Waste Sorting
+    </p>
+
+    <p>
+        Research project information and updates
+    </p>
+
+</footer>
+
+
+</body>
+</html>
