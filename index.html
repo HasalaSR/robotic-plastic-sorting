@@ -15,15 +15,21 @@
         content="AI-enabled robotic sorting of real post-consumer plastic waste using deep learning, industrial machine vision, conveyor tracking and an ABB IRB 360 delta robot."
     >
 
+    <meta
+        name="theme-color"
+        content="#001F45"
+    >
+
     <title>
-        AI-Driven Robotic Plastic Waste Sorting
+        AI-Enabled Robotic Plastic Waste Sorting
     </title>
 
 
     <style>
 
         /* =====================================================
-           FEIT / POSTER COLOUR PALETTE
+           COLOUR SYSTEM
+           Matches the FEIT poster palette
            ===================================================== */
 
         :root {
@@ -33,25 +39,27 @@
             --ink: #0B1F3A;
 
             --green: #2E8B3C;
+            --green-dark: #257432;
             --light-green: #EAF6EA;
 
             --orange: #F26A21;
+            --orange-dark: #D95B17;
             --light-orange: #FFF0E6;
 
             --grey: #B8B8B8;
             --blue-grey: #4D6A8A;
+
             --light-grey: #F5F7FA;
+            --border: #DDE3EA;
 
             --white: #FFFFFF;
 
-            --border: #DDE3EA;
-
-            --max-width: 1120px;
+            --max-width: 1180px;
         }
 
 
         /* =====================================================
-           GLOBAL
+           RESET / GLOBAL
            ===================================================== */
 
         * {
@@ -81,110 +89,79 @@
             line-height: 1.65;
 
             -webkit-font-smoothing: antialiased;
+
+            overflow-x: hidden;
         }
 
 
         img {
 
-            max-width: 100%;
-
             display: block;
+
+            max-width: 100%;
         }
 
 
         a {
-
             color: inherit;
         }
 
 
         section {
-
-            scroll-margin-top: 70px;
+            scroll-margin-top: 80px;
         }
 
 
         /* =====================================================
-           HEADER / HERO
+           IMAGE-SAVING DETERRENCE
            ===================================================== */
 
-        header {
+        .protected-media {
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--navy),
-                    var(--dark-navy)
-                );
+            position: relative;
 
-            color: var(--white);
+            overflow: hidden;
 
-            padding:
-                70px 24px
-                64px;
+            user-select: none;
+
+            -webkit-user-select: none;
+
+            -webkit-touch-callout: none;
         }
 
 
-        .header-inner {
+        .protected-media img {
 
-            max-width: var(--max-width);
+            pointer-events: none;
 
-            margin: 0 auto;
+            user-select: none;
+
+            -webkit-user-select: none;
+
+            -webkit-user-drag: none;
+
+            -webkit-touch-callout: none;
         }
 
 
-        .eyebrow {
+        /*
+        Transparent interaction layer.
 
-            font-size: 0.93rem;
+        This prevents the browser from treating the visible
+        image itself as the object being right-clicked.
+        */
 
-            font-weight: 700;
+        .media-shield {
 
-            text-transform: uppercase;
+            position: absolute;
 
-            letter-spacing: 0.09em;
+            inset: 0;
 
-            opacity: 0.85;
+            z-index: 5;
 
-            margin-bottom: 15px;
-        }
+            background: transparent;
 
-
-        h1 {
-
-            margin:
-                0 0 22px;
-
-            max-width: 950px;
-
-            font-size:
-                clamp(
-                    2.4rem,
-                    6vw,
-                    4.7rem
-                );
-
-            line-height: 1.04;
-
-            font-weight: 800;
-        }
-
-
-        .subtitle {
-
-            max-width: 830px;
-
-            margin: 0;
-
-            font-size:
-                clamp(
-                    1.05rem,
-                    2vw,
-                    1.45rem
-                );
-
-            line-height: 1.55;
-
-            opacity: 0.96;
+            cursor: default;
         }
 
 
@@ -192,19 +169,26 @@
            NAVIGATION
            ===================================================== */
 
-        nav {
+        .site-nav {
 
-            position: sticky;
+            position: fixed;
 
             top: 0;
 
-            z-index: 100;
+            left: 0;
 
-            background: var(--dark-navy);
+            right: 0;
 
-            box-shadow:
-                0 2px 8px
-                rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+
+            background:
+                rgba(0, 31, 69, 0.96);
+
+            backdrop-filter: blur(10px);
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.10);
         }
 
 
@@ -214,10 +198,40 @@
 
             margin: 0 auto;
 
+            min-height: 68px;
+
             padding:
-                12px 24px;
+                0 24px;
 
             display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+
+        .nav-brand {
+
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            font-size: 1rem;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
 
             gap: 22px;
 
@@ -225,38 +239,324 @@
         }
 
 
-        nav a {
+        .nav-links a {
 
-            color: var(--white);
+            color:
+                rgba(255, 255, 255, 0.92);
 
             text-decoration: none;
 
-            font-size: 0.95rem;
+            font-size: 0.91rem;
 
             font-weight: 600;
         }
 
 
-        nav a:hover {
+        .nav-links a:hover {
 
-            text-decoration: underline;
+            color: var(--white);
         }
 
 
         /* =====================================================
-           GENERAL SECTION LAYOUT
+           HERO
            ===================================================== */
 
-        main {
+        .hero {
 
-            width: 100%;
+            min-height: 88vh;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(0, 31, 69, 0.94) 0%,
+                    rgba(0, 31, 69, 0.78) 42%,
+                    rgba(0, 31, 69, 0.28) 75%,
+                    rgba(0, 31, 69, 0.12) 100%
+                ),
+
+                linear-gradient(
+                    0deg,
+                    rgba(0, 31, 69, 0.62) 0%,
+                    rgba(0, 31, 69, 0.00) 48%
+                ),
+
+                url("assets/robot-system.jpg");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: var(--white);
+
+            padding:
+                150px 24px
+                95px;
         }
 
+
+        .hero-inner {
+
+            width: 100%;
+
+            max-width: var(--max-width);
+
+            margin: 0 auto;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .hero-kicker {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 18px;
+
+            padding:
+                7px 12px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.35);
+
+            border-radius: 999px;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            font-size: 0.86rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+        }
+
+
+        .hero h1 {
+
+            max-width: 850px;
+
+            margin:
+                0 0 22px;
+
+            font-size:
+                clamp(
+                    2.8rem,
+                    6.5vw,
+                    5.3rem
+                );
+
+            line-height: 1.01;
+
+            letter-spacing: -0.03em;
+
+            font-weight: 850;
+        }
+
+
+        .hero-subtitle {
+
+            max-width: 760px;
+
+            margin:
+                0 0 31px;
+
+            font-size:
+                clamp(
+                    1.08rem,
+                    2vw,
+                    1.45rem
+                );
+
+            line-height: 1.55;
+
+            color:
+                rgba(255, 255, 255, 0.95);
+        }
+
+
+        .hero-actions {
+
+            display: flex;
+
+            gap: 13px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .hero-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 47px;
+
+            padding:
+                0 20px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-weight: 750;
+
+            transition:
+                transform 0.15s ease,
+                background 0.15s ease;
+        }
+
+
+        .hero-button:hover {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .hero-button.primary {
+
+            background: var(--green);
+
+            color: var(--white);
+        }
+
+
+        .hero-button.secondary {
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.50);
+
+            color: var(--white);
+        }
+
+
+        /* =====================================================
+           FLOATING METRICS
+           ===================================================== */
+
+        .metric-shell {
+
+            position: relative;
+
+            z-index: 20;
+
+            max-width: var(--max-width);
+
+            margin:
+                -45px auto
+                0;
+
+            padding:
+                0 24px;
+        }
+
+
+        .metric-strip {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            overflow: hidden;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 10px;
+
+            background: var(--white);
+
+            box-shadow:
+                0 12px 32px
+                rgba(0, 31, 69, 0.14);
+        }
+
+
+        .metric {
+
+            padding:
+                27px 24px;
+
+            border-right:
+                1px solid var(--border);
+        }
+
+
+        .metric:last-child {
+            border-right: none;
+        }
+
+
+        .metric-number {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: var(--green);
+
+            font-size:
+                clamp(
+                    1.7rem,
+                    2.8vw,
+                    2.35rem
+                );
+
+            line-height: 1;
+
+            font-weight: 850;
+        }
+
+
+        .metric-number.caution {
+
+            color: var(--orange);
+        }
+
+
+        .metric-label {
+
+            color: var(--ink);
+
+            font-size: 0.9rem;
+
+            line-height: 1.4;
+        }
+
+
+        /* =====================================================
+           GENERAL SECTION SYSTEM
+           ===================================================== */
 
         section {
 
             padding:
-                66px 24px;
+                85px 24px;
         }
 
 
@@ -268,35 +568,47 @@
         }
 
 
-        .alternate {
+        .section-label {
 
-            background: var(--light-grey);
+            margin-bottom: 9px;
+
+            color: var(--green);
+
+            font-size: 0.79rem;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.11em;
         }
 
 
         h2 {
 
-            color: var(--navy);
+            max-width: 850px;
 
             margin:
-                0 0 24px;
+                0 0 23px;
+
+            color: var(--navy);
 
             font-size:
                 clamp(
-                    1.8rem,
+                    2rem,
                     4vw,
-                    2.6rem
+                    3rem
                 );
 
-            line-height: 1.2;
+            line-height: 1.15;
+
+            letter-spacing: -0.02em;
         }
 
 
         h3 {
 
             color: var(--navy);
-
-            margin-top: 0;
         }
 
 
@@ -304,229 +616,175 @@
 
             max-width: 880px;
 
-            font-size: 1.15rem;
+            margin-bottom: 20px;
 
-            line-height: 1.7;
+            color: #283A51;
+
+            font-size: 1.14rem;
+
+            line-height: 1.72;
         }
 
 
-        /* =====================================================
-           BUTTONS
-           ===================================================== */
-
-        .buttons {
-
-            display: flex;
-
-            gap: 14px;
-
-            flex-wrap: wrap;
-
-            margin-top: 28px;
-        }
-
-
-        .button {
-
-            display: inline-block;
-
-            padding:
-                12px 20px;
-
-            background: var(--navy);
-
-            color: var(--white);
-
-            text-decoration: none;
-
-            border-radius: 5px;
-
-            font-weight: 700;
-
-            transition:
-                transform 0.15s ease,
-                background 0.15s ease;
-        }
-
-
-        .button:hover {
-
-            background: var(--dark-navy);
-
-            transform:
-                translateY(-1px);
-        }
-
-
-        .button-green {
-
-            background: var(--green);
-        }
-
-
-        .button-green:hover {
-
-            background: #267733;
-        }
-
-
-        .button-orange {
-
-            background: var(--orange);
-        }
-
-
-        .button-orange:hover {
-
-            background: #D95B17;
-        }
-
-
-        .button-disabled {
-
-            display: inline-block;
-
-            padding:
-                12px 20px;
-
-            background: #E1E5EA;
-
-            color: #66717E;
-
-            border-radius: 5px;
-
-            font-weight: 700;
-
-            cursor: default;
-        }
-
-
-        /* =====================================================
-           MAIN SYSTEM IMAGE
-           ===================================================== */
-
-        .hero-image {
-
-            margin-top: 36px;
-
-            overflow: hidden;
-
-            border-radius: 9px;
-
-            border:
-                1px solid var(--border);
+        .muted-section {
 
             background: var(--light-grey);
         }
 
 
-        .hero-image img {
+        /* =====================================================
+           ABOUT
+           ===================================================== */
 
-            width: 100%;
+        .about-grid {
 
-            max-height: 620px;
+            display: grid;
 
-            object-fit: cover;
+            grid-template-columns:
+                minmax(0, 1.35fr)
+                minmax(280px, 0.65fr);
+
+            gap: 55px;
+
+            align-items: center;
         }
 
 
-        .image-caption {
+        .research-question {
 
-            max-width: 900px;
+            padding: 30px;
 
-            margin:
-                10px auto 0;
+            border-radius: 9px;
 
-            text-align: center;
+            background: var(--dark-navy);
 
-            color: var(--blue-grey);
+            color: var(--white);
 
-            font-size: 0.93rem;
+            box-shadow:
+                0 10px 25px
+                rgba(0, 31, 69, 0.12);
+        }
+
+
+        .research-question .question-label {
+
+            margin-bottom: 11px;
+
+            color: #BFD1E5;
+
+            font-size: 0.77rem;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.10em;
+        }
+
+
+        .research-question strong {
+
+            display: block;
+
+            font-size: 1.35rem;
 
             line-height: 1.45;
         }
 
 
         /* =====================================================
-           KEY METRICS
+           PROCESS STRIP
            ===================================================== */
 
-        .metrics {
+        .process-strip {
 
             display: grid;
 
             grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(205px, 1fr)
-                );
+                repeat(5, 1fr);
 
-            gap: 18px;
+            gap: 12px;
 
-            margin-top: 34px;
+            margin-top: 37px;
         }
 
 
-        .metric {
+        .process-step {
 
-            padding: 26px;
+            position: relative;
 
-            background: var(--white);
+            min-height: 130px;
+
+            padding: 21px 17px;
 
             border:
                 1px solid var(--border);
 
             border-radius: 8px;
+
+            background: var(--white);
         }
 
 
-        .metric-number {
+        .process-number {
 
-            display: block;
+            width: 30px;
 
-            margin-bottom: 10px;
+            height: 30px;
 
-            color: var(--green);
+            display: flex;
 
-            font-size: 2.15rem;
+            align-items: center;
 
-            line-height: 1.1;
+            justify-content: center;
+
+            margin-bottom: 13px;
+
+            border-radius: 50%;
+
+            background: var(--navy);
+
+            color: var(--white);
+
+            font-size: 0.8rem;
 
             font-weight: 800;
         }
 
 
-        .metric-caution {
+        .process-step strong {
 
-            color: var(--orange);
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: var(--navy);
+
+            font-size: 1.03rem;
         }
 
 
-        .metric-label {
+        .process-step span {
 
-            color: var(--ink);
+            font-size: 0.85rem;
 
-            font-size: 0.96rem;
-
-            line-height: 1.5;
+            color: var(--blue-grey);
         }
 
 
         /* =====================================================
-           SYSTEM IMAGE GALLERY
+           GALLERY
            ===================================================== */
 
         .gallery-group-title {
 
             margin:
-                50px 0
-                19px;
+                52px 0
+                20px;
 
-            color: var(--navy);
+            font-size: 1.33rem;
 
-            font-size: 1.4rem;
-
-            font-weight: 750;
+            font-weight: 800;
         }
 
 
@@ -550,22 +808,29 @@
 
             overflow: hidden;
 
-            background: var(--white);
-
             border:
                 1px solid var(--border);
 
-            border-radius: 8px;
+            border-radius: 9px;
+
+            background: var(--white);
 
             box-shadow:
-                0 2px 8px
-                rgba(0, 31, 69, 0.05);
+                0 3px 14px
+                rgba(0, 31, 69, 0.055);
+        }
+
+
+        .gallery-card.wide {
+
+            grid-column:
+                1 / -1;
         }
 
 
         .gallery-image {
 
-            height: 325px;
+            height: 330px;
 
             display: flex;
 
@@ -573,25 +838,20 @@
 
             justify-content: center;
 
-            padding: 9px;
+            padding: 10px;
 
-            background: var(--white);
+            background: #FFFFFF;
         }
 
 
-        .gallery-image a {
+        .gallery-card.wide
+        .gallery-image {
 
-            display: flex;
+            height: auto;
 
-            align-items: center;
+            min-height: 390px;
 
-            justify-content: center;
-
-            width: 100%;
-
-            height: 100%;
-
-            text-decoration: none;
+            padding: 14px;
         }
 
 
@@ -602,60 +862,11 @@
             height: 100%;
 
             object-fit: contain;
-
-            transition:
-                transform 0.18s ease;
-        }
-
-
-        .gallery-image a:hover img {
-
-            transform:
-                scale(1.015);
-        }
-
-
-        .gallery-card figcaption {
-
-            padding:
-                15px 17px
-                18px;
-
-            border-top:
-                1px solid #E5E9EF;
-
-            color: var(--ink);
-
-            font-size: 0.94rem;
-
-            line-height: 1.5;
-        }
-
-
-        /* Full-width technical diagrams */
-
-        .gallery-card.wide {
-
-            grid-column:
-                1 / -1;
-        }
-
-
-        .gallery-card.wide
-        .gallery-image {
-
-            height: auto;
-
-            min-height: 380px;
-
-            padding: 14px;
         }
 
 
         .gallery-card.wide
         .gallery-image img {
-
-            width: 100%;
 
             height: auto;
 
@@ -665,13 +876,94 @@
         }
 
 
+        .gallery-card figcaption {
+
+            padding:
+                16px 18px
+                19px;
+
+            border-top:
+                1px solid #E7EBEF;
+
+            color: #34465B;
+
+            font-size: 0.91rem;
+
+            line-height: 1.48;
+        }
+
+
         /* =====================================================
-           VIDEO
+           RESULT STORY
            ===================================================== */
 
-        .video-placeholder {
+        .result-callout {
 
-            min-height: 330px;
+            display: grid;
+
+            grid-template-columns:
+                1fr auto 1fr;
+
+            align-items: center;
+
+            gap: 28px;
+
+            margin-top: 35px;
+
+            padding: 34px;
+
+            border-radius: 10px;
+
+            background: var(--dark-navy);
+
+            color: var(--white);
+        }
+
+
+        .result-side {
+
+            text-align: center;
+        }
+
+
+        .result-big {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size:
+                clamp(
+                    2.0rem,
+                    4vw,
+                    3.2rem
+                );
+
+            line-height: 1;
+
+            font-weight: 850;
+        }
+
+
+        .result-side.success
+        .result-big {
+
+            color: #63C76F;
+        }
+
+
+        .result-side.caution
+        .result-big {
+
+            color: #FF8A4B;
+        }
+
+
+        .result-vs {
+
+            width: 52px;
+
+            height: 52px;
 
             display: flex;
 
@@ -679,58 +971,87 @@
 
             justify-content: center;
 
-            padding: 35px;
+            border-radius: 50%;
 
-            background: var(--dark-navy);
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            font-weight: 850;
+        }
+
+
+        /* =====================================================
+           VIDEO
+           ===================================================== */
+
+        .video-card {
+
+            min-height: 370px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 38px;
+
+            border-radius: 11px;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 20%,
+                    #0C477C,
+                    var(--dark-navy) 60%
+                );
 
             color: var(--white);
 
             text-align: center;
-
-            border-radius: 8px;
         }
 
 
-        .video-placeholder strong {
+        .play-symbol {
+
+            width: 72px;
+
+            height: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin:
+                0 auto
+                20px;
+
+            border:
+                2px solid
+                rgba(255, 255, 255, 0.8);
+
+            border-radius: 50%;
+
+            font-size: 1.75rem;
+
+            padding-left: 4px;
+        }
+
+
+        .video-card strong {
 
             display: block;
 
             margin-bottom: 8px;
 
-            font-size: 1.5rem;
-        }
-
-
-        .video-wrapper {
-
-            position: relative;
-
-            height: 0;
-
-            padding-bottom: 56.25%;
-
-            overflow: hidden;
-
-            border-radius: 8px;
-        }
-
-
-        .video-wrapper iframe {
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 100%;
-
-            border: 0;
+            font-size: 1.45rem;
         }
 
 
         /* =====================================================
-           RESOURCE CARDS
+           OUTPUTS
            ===================================================== */
 
         .resource-grid {
@@ -739,8 +1060,8 @@
 
             grid-template-columns:
                 repeat(
-                    auto-fit,
-                    minmax(235px, 1fr)
+                    4,
+                    minmax(0, 1fr)
                 );
 
             gap: 18px;
@@ -751,20 +1072,87 @@
 
         .resource {
 
+            min-height: 240px;
+
             padding: 25px;
 
-            background: var(--white);
+            display: flex;
+
+            flex-direction: column;
 
             border:
                 1px solid var(--border);
 
-            border-radius: 8px;
+            border-radius: 9px;
+
+            background: var(--white);
+        }
+
+
+        .resource h3 {
+
+            margin:
+                0 0 10px;
+
+            font-size: 1.16rem;
         }
 
 
         .resource p {
 
-            margin-bottom: 21px;
+            flex: 1;
+
+            margin:
+                0 0 22px;
+
+            color: var(--blue-grey);
+
+            font-size: 0.91rem;
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: fit-content;
+
+            min-height: 42px;
+
+            padding:
+                0 16px;
+
+            border-radius: 5px;
+
+            background: var(--navy);
+
+            color: var(--white);
+
+            text-decoration: none;
+
+            font-weight: 750;
+
+            font-size: 0.9rem;
+        }
+
+
+        .button.green {
+
+            background: var(--green);
+        }
+
+
+        .button.disabled {
+
+            background: #E4E7EB;
+
+            color: #718092;
+
+            cursor: default;
         }
 
 
@@ -774,13 +1162,13 @@
 
         .takeaway {
 
-            padding: 46px;
+            padding: 48px;
+
+            border-radius: 11px;
 
             background: var(--dark-navy);
 
             color: var(--white);
-
-            border-radius: 9px;
         }
 
 
@@ -794,34 +1182,67 @@
 
             display: block;
 
-            margin-bottom: 12px;
+            margin-bottom: 13px;
 
-            color: var(--white);
-
-            font-size: 1.4rem;
+            font-size:
+                clamp(
+                    1.35rem,
+                    3vw,
+                    2rem
+                );
         }
 
 
         .takeaway p {
 
-            max-width: 900px;
+            max-width: 850px;
 
             margin-bottom: 0;
+
+            color:
+                rgba(255, 255, 255, 0.90);
         }
 
 
         /* =====================================================
-           TEAM / CONTACT
+           TEAM
            ===================================================== */
 
-        .contact-box {
+        .team-card {
 
-            margin-top: 27px;
+            max-width: 700px;
 
-            padding-left: 23px;
+            padding: 30px;
 
             border-left:
-                5px solid var(--navy);
+                5px solid var(--green);
+
+            border-radius:
+                0 8px 8px 0;
+
+            background: var(--light-grey);
+        }
+
+
+        .team-card strong {
+
+            display: block;
+
+            margin-bottom: 4px;
+
+            color: var(--navy);
+
+            font-size: 1.25rem;
+        }
+
+
+        .contact-note {
+
+            margin-top: 25px;
+
+            color: var(--blue-grey);
+
+            font-size: 0.88rem;
         }
 
 
@@ -832,36 +1253,92 @@
         footer {
 
             padding:
-                36px 24px;
+                42px 24px;
 
             background: var(--dark-navy);
 
-            color: var(--white);
+            color:
+                rgba(255, 255, 255, 0.82);
 
             text-align: center;
 
-            font-size: 0.9rem;
+            font-size: 0.87rem;
+        }
+
+
+        footer strong {
+
+            color: var(--white);
         }
 
 
         footer p {
 
-            margin:
-                5px 0;
+            margin: 5px 0;
         }
 
 
         /* =====================================================
-           MOBILE / TABLET
+           RESPONSIVE
            ===================================================== */
 
         @media
-        (max-width: 800px) {
+        (max-width: 1000px) {
+
+            .metric-strip {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .metric:nth-child(2) {
+
+                border-right: none;
+            }
+
+
+            .metric:nth-child(-n+2) {
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+
+            .process-strip {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .resource-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media
+        (max-width: 820px) {
+
+            .nav-links {
+
+                display: none;
+            }
+
+
+            .about-grid {
+
+                grid-template-columns: 1fr;
+            }
+
 
             .gallery-grid {
 
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: 1fr;
             }
 
 
@@ -871,74 +1348,134 @@
             }
 
 
-            .gallery-image {
-
-                height: auto;
-
-                min-height: 0;
-            }
-
-
-            .gallery-image img {
-
-                width: 100%;
-
-                height: auto;
-
-                max-height: 550px;
-            }
-
-
+            .gallery-image,
             .gallery-card.wide
             .gallery-image {
 
+                height: auto;
+
                 min-height: 0;
+            }
+
+
+            .gallery-image img,
+            .gallery-card.wide
+            .gallery-image img {
+
+                height: auto;
+
+                max-height: 570px;
+            }
+
+
+            .result-callout {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+            }
+
+
+            .result-vs {
+
+                margin: 0 auto;
             }
 
         }
 
 
         @media
-        (max-width: 650px) {
+        (max-width: 620px) {
 
-            header {
+            .nav-inner {
+
+                min-height: 60px;
 
                 padding:
-                    50px 20px;
+                    0 18px;
+            }
+
+
+            .nav-brand {
+
+                font-size: 0.88rem;
+            }
+
+
+            .hero {
+
+                min-height: 78vh;
+
+                padding:
+                    125px 20px
+                    75px;
+
+                background-position:
+                    58% center;
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    clamp(
+                        2.4rem,
+                        12vw,
+                        3.4rem
+                    );
+            }
+
+
+            .metric-shell {
+
+                padding:
+                    0 15px;
+            }
+
+
+            .metric-strip {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .metric {
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+
+            .metric:last-child {
+
+                border-bottom: none;
             }
 
 
             section {
 
                 padding:
-                    48px 20px;
+                    62px 19px;
             }
 
 
-            .nav-inner {
+            .process-strip {
 
-                gap: 15px;
-
-                padding:
-                    11px 18px;
+                grid-template-columns: 1fr;
             }
 
 
-            nav a {
+            .resource-grid {
 
-                font-size: 0.88rem;
+                grid-template-columns: 1fr;
             }
 
 
             .takeaway {
 
                 padding: 30px;
-            }
-
-
-            .metric {
-
-                padding: 22px;
             }
 
         }
@@ -952,29 +1489,77 @@
 
 
 <!-- =========================================================
-     HEADER
+     FIXED NAVIGATION
      ========================================================= -->
 
-<header>
+<nav class="site-nav">
 
-    <div class="header-inner">
+    <div class="nav-inner">
 
-        <div class="eyebrow">
+        <a
+            class="nav-brand"
+            href="#top"
+        >
+            Robotic Plastic Sorting
+        </a>
 
+
+        <div class="nav-links">
+
+            <a href="#about">
+                Research
+            </a>
+
+            <a href="#system">
+                System
+            </a>
+
+            <a href="#results">
+                Results
+            </a>
+
+            <a href="#video">
+                Video
+            </a>
+
+            <a href="#outputs">
+                Outputs
+            </a>
+
+            <a href="#team">
+                Team
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<header
+    id="top"
+    class="hero protected-media"
+>
+
+    <div class="hero-inner">
+
+        <div class="hero-kicker">
             AI-Enabled Robotic Waste Sorting
-
         </div>
 
 
         <h1>
-
-            AI Can See the Plastic.
+            AI Can See the Plastic.<br>
             But Can the Robot Pick It?
-
         </h1>
 
 
-        <p class="subtitle">
+        <p class="hero-subtitle">
 
             From AI detection to physical recovery of real
             post-consumer plastics using industrial machine
@@ -983,46 +1568,101 @@
 
         </p>
 
+
+        <div class="hero-actions">
+
+            <a
+                class="hero-button primary"
+                href="#system"
+            >
+                Explore the System
+            </a>
+
+
+            <a
+                class="hero-button secondary"
+                href="#video"
+            >
+                Watch Demonstration
+            </a>
+
+        </div>
+
     </div>
+
+
+    <div
+        class="media-shield"
+        aria-hidden="true"
+    ></div>
 
 </header>
 
 
 <!-- =========================================================
-     NAVIGATION
+     RESULT METRICS
      ========================================================= -->
 
-<nav>
+<div class="metric-shell">
 
-    <div class="nav-inner">
+    <div class="metric-strip">
 
-        <a href="#about">
-            About
-        </a>
 
-        <a href="#system">
-            System
-        </a>
+        <div class="metric">
 
-        <a href="#results">
-            Key Results
-        </a>
+            <span class="metric-number">
+                20,100
+            </span>
 
-        <a href="#video">
-            Video
-        </a>
+            <span class="metric-label">
+                Images from real post-consumer waste
+            </span>
 
-        <a href="#outputs">
-            Research Outputs
-        </a>
+        </div>
 
-        <a href="#team">
-            Team
-        </a>
+
+        <div class="metric">
+
+            <span class="metric-number">
+                0.601
+            </span>
+
+            <span class="metric-label">
+                YOLOv11m validation mAP@0.5
+            </span>
+
+        </div>
+
+
+        <div class="metric">
+
+            <span class="metric-number">
+                0.88 m/s
+            </span>
+
+            <span class="metric-label">
+                Industrial conveyor test speed
+            </span>
+
+        </div>
+
+
+        <div class="metric">
+
+            <span class="metric-number caution">
+                22.7–44.0%
+            </span>
+
+            <span class="metric-label">
+                Per-class physical recovery
+            </span>
+
+        </div>
+
 
     </div>
 
-</nav>
+</div>
 
 
 <main>
@@ -1036,52 +1676,157 @@
 
     <div class="section-inner">
 
+        <div class="section-label">
+            Research Question
+        </div>
+
+
         <h2>
-            About the Research
+            Moving from detection accuracy to real physical recovery
         </h2>
 
 
-        <p class="lead">
-
-            This research investigates whether accurate
-            artificial-intelligence-based object detection can
-            be translated into reliable physical recovery when
-            integrated with an industrial robotic sorting
-            system operating on a moving conveyor.
-
-        </p>
+        <div class="about-grid">
 
 
-        <p>
+            <div>
 
-            Rather than evaluating computer vision in isolation,
-            the work examines the complete perception-to-action
-            chain using real post-consumer plastic waste. The
-            experimental platform integrates image acquisition,
-            AI-based detection, object selection, conveyor
-            tracking, robot motion and pneumatic grasping into
-            a single end-to-end system.
+                <p class="lead">
 
-        </p>
+                    This research investigates whether accurate
+                    AI-based object detection can be translated
+                    into reliable physical recovery when integrated
+                    with an industrial robotic sorting system
+                    operating on a moving conveyor.
+
+                </p>
 
 
-        <div class="hero-image">
+                <p>
 
-            <img
-                src="assets/robot-system.jpg"
-                alt="Commissioned AI-enabled robotic sorting platform with real post-consumer plastic samples"
-            >
+                    Rather than evaluating computer vision in
+                    isolation, the work examines the complete
+                    perception-to-action chain using real
+                    post-consumer plastic waste. Image acquisition,
+                    detection, object selection, conveyor tracking,
+                    robot motion and pneumatic grasping are evaluated
+                    as one coordinated system.
+
+                </p>
+
+            </div>
+
+
+            <aside class="research-question">
+
+                <div class="question-label">
+                    Central Question
+                </div>
+
+
+                <strong>
+
+                    Can accurate AI detections be converted into
+                    reliable physical recovery on a moving
+                    industrial conveyor?
+
+                </strong>
+
+            </aside>
+
 
         </div>
 
 
-        <p class="image-caption">
+        <div class="process-strip">
 
-            Commissioned robotic sorting platform prepared for
-            experimental trials with real post-consumer plastic
-            samples.
 
-        </p>
+            <div class="process-step">
+
+                <div class="process-number">
+                    1
+                </div>
+
+                <strong>
+                    See
+                </strong>
+
+                <span>
+                    Identify target plastic
+                </span>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    2
+                </div>
+
+                <strong>
+                    Track
+                </strong>
+
+                <span>
+                    Predict conveyor-relative position
+                </span>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    3
+                </div>
+
+                <strong>
+                    Select
+                </strong>
+
+                <span>
+                    Choose an actionable target
+                </span>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    4
+                </div>
+
+                <strong>
+                    Pick
+                </strong>
+
+                <span>
+                    Intercept and grasp
+                </span>
+
+            </div>
+
+
+            <div class="process-step">
+
+                <div class="process-number">
+                    5
+                </div>
+
+                <strong>
+                    Recover
+                </strong>
+
+                <span>
+                    Place into the intended stream
+                </span>
+
+            </div>
+
+
+        </div>
 
     </div>
 
@@ -1089,37 +1834,32 @@
 
 
 <!-- =========================================================
-     SYSTEM AND EXPERIMENTAL PLATFORM
+     SYSTEM
      ========================================================= -->
 
 <section
     id="system"
-    class="alternate"
+    class="muted-section"
 >
 
     <div class="section-inner">
 
+        <div class="section-label">
+            Experimental Platform
+        </div>
+
+
         <h2>
-            System and Experimental Platform
+            A complete industrial perception-to-action testbed
         </h2>
 
 
         <p class="lead">
 
-            The experimental platform combines industrial
-            machine vision, AI inference, conveyor tracking,
-            pneumatic manipulation and an ABB IRB 360 delta
-            robot into a complete robotic sorting cell.
-
-        </p>
-
-
-        <p>
-
-            The following images document the physical cell,
-            architecture, major hardware, vision system,
-            conveyor and control subsystems, and the development
-            of the robotic end effector.
+            The platform integrates industrial machine vision,
+            AI inference, conveyor tracking, pneumatic
+            manipulation and an ABB IRB 360 delta robot into a
+            complete robotic sorting cell.
 
         </p>
 
@@ -1136,26 +1876,24 @@
         <div class="gallery-grid">
 
 
-            <!-- IMAGE 11 -->
+            <!-- 11 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/11-completed-prototype-cell.jpg"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/11-completed-prototype-cell.jpg"
+                        alt="Completed prototype robotic sorting cell"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/11-completed-prototype-cell.jpg"
-                            alt="Completed prototype robotic sorting cell"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1172,62 +1910,57 @@
             </figure>
 
 
-            <!-- IMAGE 2 -->
+            <!-- 2 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/02-prototype-cell-overview.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/02-prototype-cell-overview.png"
+                        alt="Complete prototype robotic sorting cell"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/02-prototype-cell-overview.png"
-                            alt="Complete prototype robotic sorting cell and major components"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
 
                 <figcaption>
 
-                    Complete prototype cell showing the
-                    ABB IRB 360 robot support frame, conveyor,
-                    guarded enclosure and major system
-                    components.
+                    Complete prototype cell showing the robot
+                    support frame, conveyor, guarded enclosure
+                    and major system components.
 
                 </figcaption>
 
             </figure>
 
 
-            <!-- IMAGE 1 -->
+            <!-- 1 -->
 
             <figure class="gallery-card wide">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/01-abb-irb360-robot.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/01-abb-irb360-robot.png"
+                        alt="ABB IRB 360 industrial delta robot"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/01-abb-irb360-robot.png"
-                            alt="ABB IRB 360 industrial delta robot with four-cup pneumatic gripper"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1235,18 +1968,19 @@
                 <figcaption>
 
                     ABB IRB 360 industrial delta robot installed
-                    above the conveyor with the final
-                    four-cup pneumatic suction gripper.
+                    above the conveyor with the final four-cup
+                    pneumatic suction gripper.
 
                 </figcaption>
 
             </figure>
 
+
         </div>
 
 
         <!-- =================================================
-             ARCHITECTURE AND LAYOUT
+             ARCHITECTURE
              ================================================= -->
 
         <h3 class="gallery-group-title">
@@ -1257,26 +1991,24 @@
         <div class="gallery-grid">
 
 
-            <!-- IMAGE 4 -->
+            <!-- 4 -->
 
             <figure class="gallery-card wide">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/04-system-architecture-roadmap.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/04-system-architecture-roadmap.png"
+                        alt="Overall architecture and build roadmap"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/04-system-architecture-roadmap.png"
-                            alt="Overall architecture and build roadmap of the AI-enabled robotic sorting platform"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1292,46 +2024,45 @@
             </figure>
 
 
-            <!-- IMAGE 3 -->
+            <!-- 3 -->
 
             <figure class="gallery-card wide">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/03-cell-layout-plan.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/03-cell-layout-plan.png"
+                        alt="Top-down robotic sorting cell layout"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/03-cell-layout-plan.png"
-                            alt="Top-down layout of the robotic sorting cell"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
 
                 <figcaption>
 
-                    Overall sorting-cell layout showing the
-                    conveyor path, camera capture zone,
-                    IRB 360 working range, object-release bins
-                    and downstream discharge region.
+                    Sorting-cell layout showing the conveyor
+                    path, camera capture zone, IRB 360 working
+                    range, release bins and downstream discharge
+                    region.
 
                 </figcaption>
 
             </figure>
 
+
         </div>
 
 
         <!-- =================================================
-             VISION AND COMPUTING
+             VISION
              ================================================= -->
 
         <h3 class="gallery-group-title">
@@ -1342,26 +2073,24 @@
         <div class="gallery-grid">
 
 
-            <!-- IMAGE 9 -->
+            <!-- 9 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/09-vision-hardware-lighting.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/09-vision-hardware-lighting.png"
+                        alt="Vision hardware and lighting installation"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/09-vision-hardware-lighting.png"
-                            alt="Vision-system hardware and lighting installation"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1378,26 +2107,24 @@
             </figure>
 
 
-            <!-- IMAGE 10 -->
+            <!-- 10 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/10-operator-control-computing.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/10-operator-control-computing.png"
+                        alt="Operator control and industrial AI computing arrangement"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/10-operator-control-computing.png"
-                            alt="ABB FlexPendant and industrial AI computing system"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1406,47 +2133,46 @@
 
                     Operator-side control and computing
                     arrangement showing the ABB FlexPendant
-                    and industrial AI computing platform.
+                    and industrial AI computer.
 
                 </figcaption>
 
             </figure>
 
+
         </div>
 
 
         <!-- =================================================
-             ROBOTIC MANIPULATION
+             GRIPPER
              ================================================= -->
 
         <h3 class="gallery-group-title">
-            Robotic Manipulation and Gripper Development
+            Robotic Manipulation
         </h3>
 
 
         <div class="gallery-grid">
 
 
-            <!-- IMAGE 5 -->
+            <!-- 5 -->
 
             <figure class="gallery-card wide">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/05-gripper-development.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/05-gripper-development.png"
+                        alt="Development of the robotic suction gripper"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/05-gripper-development.png"
-                            alt="Development of the robotic suction gripper"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1456,17 +2182,18 @@
                     Gripper development from the initial
                     blower-powered suction system to the
                     lightweight four-cup pneumatic suction
-                    end effector used in the final experiments.
+                    end effector.
 
                 </figcaption>
 
             </figure>
 
+
         </div>
 
 
         <!-- =================================================
-             CONVEYOR AND CONTROL HARDWARE
+             HARDWARE
              ================================================= -->
 
         <h3 class="gallery-group-title">
@@ -1477,26 +2204,24 @@
         <div class="gallery-grid">
 
 
-            <!-- IMAGE 6 -->
+            <!-- 6 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/06-conveyor-encoder-air-supply.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/06-conveyor-encoder-air-supply.png"
+                        alt="Conveyor drive encoder and pneumatic supply hardware"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/06-conveyor-encoder-air-supply.png"
-                            alt="Conveyor drive encoder and compressed-air supply hardware"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1504,44 +2229,40 @@
                 <figcaption>
 
                     Conveyor-drive, encoder-feedback and
-                    compressed-air supply hardware used for
-                    conveyor motion, tracking and pneumatic
-                    grasping.
+                    compressed-air supply hardware.
 
                 </figcaption>
 
             </figure>
 
 
-            <!-- IMAGE 7 -->
+            <!-- 7 -->
 
             <figure class="gallery-card">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/07-electrical-control-hardware.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/07-electrical-control-hardware.png"
+                        alt="Electrical and robot control hardware"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/07-electrical-control-hardware.png"
-                            alt="Electrical and robot control hardware"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
 
                 <figcaption>
 
-                    Implemented electrical and control hardware
-                    including the robot controller, digital I/O,
-                    conveyor-tracking hardware, power supply and
+                    Electrical and control hardware including
+                    the robot controller, digital I/O,
+                    tracking hardware, power supply and
                     variable-frequency drive.
 
                 </figcaption>
@@ -1549,26 +2270,24 @@
             </figure>
 
 
-            <!-- IMAGE 8 -->
+            <!-- 8 -->
 
             <figure class="gallery-card wide">
 
-                <div class="gallery-image">
+                <div class="gallery-image protected-media">
 
-                    <a
-                        href="assets/gallery/08-conveyor-bins-arrangement.png"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <img
+                        src="assets/gallery/08-conveyor-bins-arrangement.png"
+                        alt="Conveyor and sorting-bin arrangement"
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
                     >
 
-                        <img
-                            src="assets/gallery/08-conveyor-bins-arrangement.png"
-                            alt="Conveyor sorting bins and downstream discharge arrangement"
-                            loading="lazy"
-                            decoding="async"
-                        >
-
-                    </a>
+                    <div
+                        class="media-shield"
+                        aria-hidden="true"
+                    ></div>
 
                 </div>
 
@@ -1583,6 +2302,7 @@
 
             </figure>
 
+
         </div>
 
     </div>
@@ -1591,93 +2311,63 @@
 
 
 <!-- =========================================================
-     KEY RESULTS
+     RESULTS
      ========================================================= -->
 
 <section id="results">
 
     <div class="section-inner">
 
+        <div class="section-label">
+            Main Finding
+        </div>
+
+
         <h2>
-            Key Results
+            Accurate detection did not guarantee successful recovery
         </h2>
 
 
         <p class="lead">
 
-            High perception performance did not automatically
-            translate into equally high physical recovery.
-            Reliable deployment depended on the entire chain
-            from seeing and selecting an object to tracking,
-            grasping and physically recovering it.
+            High perception performance was necessary, but
+            physical recovery depended on the complete chain:
+            target availability, scheduling, conveyor tracking,
+            robotic interception and reliable suction grasping.
 
         </p>
 
 
-        <div class="metrics">
+        <div class="result-callout">
 
 
-            <div class="metric">
+            <div class="result-side success">
 
-                <span class="metric-number">
-                    20,100
+                <span class="result-big">
+                    &gt;96%
                 </span>
 
-                <span class="metric-label">
-
-                    Images collected for the real
-                    post-consumer waste dataset
-
-                </span>
+                Precision reached by four of five
+                deployment classes
 
             </div>
 
 
-            <div class="metric">
-
-                <span class="metric-number">
-                    0.601
-                </span>
-
-                <span class="metric-label">
-
-                    YOLOv11m validation mAP@0.5
-
-                </span>
-
+            <div class="result-vs">
+                ≠
             </div>
 
 
-            <div class="metric">
+            <div class="result-side caution">
 
-                <span class="metric-number">
-                    0.88 m/s
-                </span>
-
-                <span class="metric-label">
-
-                    Conveyor speed used for the
-                    end-to-end robotic evaluation
-
-                </span>
-
-            </div>
-
-
-            <div class="metric">
-
-                <span class="metric-number metric-caution">
+                <span class="result-big">
                     22.7–44.0%
                 </span>
 
-                <span class="metric-label">
-
-                    Per-class physical recovery across
-                    the five evaluated deployment categories
-
-                </span>
+                Per-class physical recovery
 
             </div>
+
 
         </div>
 
@@ -1692,35 +2382,42 @@
 
 <section
     id="video"
-    class="alternate"
+    class="muted-section"
 >
 
     <div class="section-inner">
+
+        <div class="section-label">
+            In Operation
+        </div>
+
 
         <h2>
             System Demonstration
         </h2>
 
 
-        <p class="lead">
-
-            A short demonstration video showing the complete
-            robotic sorting system in operation will be added
-            here.
-
-        </p>
-
-
-        <div class="video-placeholder">
+        <div class="video-card">
 
             <div>
+
+                <div class="play-symbol">
+                    ▶
+                </div>
+
 
                 <strong>
                     Demonstration Video Coming Soon
                 </strong>
 
-                The video can be added later without changing
-                the QR code printed on the research poster.
+
+                <span>
+
+                    The demonstration can be added here later
+                    without changing the QR code printed on the
+                    research poster.
+
+                </span>
 
             </div>
 
@@ -1728,40 +2425,19 @@
 
 
         <!-- =================================================
-             WHEN YOUR YOUTUBE VIDEO IS READY:
+             WHEN VIDEO IS READY
 
-             1. Delete the video-placeholder block above.
-
-             2. Uncomment the block below.
-
-             3. Replace VIDEO_ID with your YouTube video ID.
-
+        Replace the video-card above with:
 
         <div class="video-wrapper">
 
             <iframe
-
                 src="https://www.youtube.com/embed/VIDEO_ID"
-
-                title="AI-enabled robotic plastic sorting demonstration"
-
-                allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share
-                "
-
-                allowfullscreen
-            >
-
+                title="Robotic plastic sorting demonstration"
+                allowfullscreen>
             </iframe>
 
         </div>
-
 
         ================================================= -->
 
@@ -1778,17 +2454,20 @@
 
     <div class="section-inner">
 
+        <div class="section-label">
+            Explore Further
+        </div>
+
+
         <h2>
             Research Outputs
         </h2>
 
 
-        <p>
+        <p class="lead">
 
-            Publications, datasets, demonstration material and
-            supplementary resources associated with this
-            research will be linked here as they become
-            publicly available.
+            Public research outputs will be added here as they
+            become available.
 
         </p>
 
@@ -1796,119 +2475,90 @@
         <div class="resource-grid">
 
 
-            <!-- POSTER -->
-
-            <div class="resource">
+            <article class="resource">
 
                 <h3>
-                    Research Poster
+                    Poster
                 </h3>
-
 
                 <p>
 
-                    The FEIT Graduate Research Showcase poster
-                    will be made available here after the final
-                    version is completed.
+                    FEIT Graduate Research Showcase poster and
+                    project summary.
 
                 </p>
 
-
-                <span class="button-disabled">
-
-                    Poster Coming Soon
-
+                <span class="button disabled">
+                    Coming Soon
                 </span>
 
-            </div>
+            </article>
 
 
-            <!-- DATASET -->
-
-            <div class="resource">
+            <article class="resource">
 
                 <h3>
                     Dataset
                 </h3>
 
-
                 <p>
 
                     Public dataset and associated annotation
-                    files used for AI model development.
+                    material.
 
                 </p>
 
-
                 <!--
-                Replace DATASET_URL with the permanent
-                dataset link when ready.
+                Replace this disabled span with a real link
+                once the dataset URL is confirmed.
                 -->
 
-                <a
-                    class="button button-green"
-                    href="DATASET_URL"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+                <span class="button disabled">
+                    Coming Soon
+                </span>
 
-                    View Dataset
-
-                </a>
-
-            </div>
+            </article>
 
 
-            <!-- PUBLICATION -->
-
-            <div class="resource">
+            <article class="resource">
 
                 <h3>
                     Publication
                 </h3>
 
-
                 <p>
 
-                    Associated peer-reviewed publication or
-                    accepted manuscript will be linked here.
+                    Associated peer-reviewed paper or accepted
+                    manuscript.
 
                 </p>
 
-
-                <span class="button-disabled">
-
-                    Publication Coming Soon
-
+                <span class="button disabled">
+                    Coming Soon
                 </span>
 
-            </div>
+            </article>
 
 
-            <!-- ADDITIONAL MATERIAL -->
-
-            <div class="resource">
+            <article class="resource">
 
                 <h3>
                     Additional Material
                 </h3>
 
-
                 <p>
 
-                    Supplementary videos, technical material
-                    and additional project resources.
+                    Supplementary video and technical project
+                    material.
 
                 </p>
 
-
-                <span class="button-disabled">
-
-                    Resources Coming Soon
-
+                <span class="button disabled">
+                    Coming Soon
                 </span>
 
-            </div>
+            </article>
+
 
         </div>
 
@@ -1918,34 +2568,38 @@
 
 
 <!-- =========================================================
-     KEY TAKEAWAY
+     TAKEAWAY
      ========================================================= -->
 
-<section class="alternate">
+<section class="muted-section">
 
     <div class="section-inner">
 
         <div class="takeaway">
 
-            <h2>
+            <div class="section-label">
                 Key Takeaway
+            </div>
+
+
+            <h2>
+                Deployment readiness is a chain property.
             </h2>
 
 
             <strong>
 
-                Deployment readiness is a chain property.
+                High-performing AI alone is not enough.
 
             </strong>
 
 
             <p>
 
-                High-performing AI is necessary, but reliable
-                robotic sorting depends on perception, tracking,
-                target selection, timing, grasping and physical
-                recovery operating effectively as one
-                coordinated system.
+                Reliable robotic sorting depends on perception,
+                tracking, target selection, scheduling, gripping
+                and physical recovery performing effectively as
+                one coordinated system.
 
             </p>
 
@@ -1957,25 +2611,28 @@
 
 
 <!-- =========================================================
-     RESEARCH TEAM
+     TEAM
      ========================================================= -->
 
 <section id="team">
 
     <div class="section-inner">
 
-        <h2>
+        <div class="section-label">
             Research Team
+        </div>
+
+
+        <h2>
+            About the Researcher
         </h2>
 
 
-        <div class="contact-box">
+        <div class="team-card">
 
             <strong>
                 Hasala Pitiduwa Gamage
             </strong>
-
-            <br>
 
             PhD Researcher
 
@@ -1983,57 +2640,14 @@
 
             The University of Melbourne
 
-            <br><br>
 
+            <p class="contact-note">
 
-            <!--
-            Replace YOUR_EMAIL with the public email
-            address you want visitors to use.
-            -->
+                Add your preferred public email, ORCID,
+                university profile or research profile here
+                before generating the final poster QR code.
 
-            Email:
-
-            <a
-                href="mailto:YOUR_EMAIL"
-            >
-
-                YOUR_EMAIL
-
-            </a>
-
-        </div>
-
-
-        <div class="buttons">
-
-
-            <a
-                class="button"
-                href="https://github.com/HasalaSR"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                GitHub Profile
-
-            </a>
-
-
-            <!--
-            Replace RESEARCH_PROFILE_URL with ORCID,
-            University profile, Google Scholar, etc.
-            -->
-
-            <a
-                class="button"
-                href="RESEARCH_PROFILE_URL"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-
-                Research Profile
-
-            </a>
+            </p>
 
         </div>
 
@@ -2052,19 +2666,151 @@
 <footer>
 
     <p>
+        <strong>
+            AI-Enabled Robotic Plastic Waste Sorting
+        </strong>
+    </p>
 
-        AI-Enabled Robotic Plastic Waste Sorting
+
+    <p>
+
+        Research project information, demonstration material
+        and public research outputs.
 
     </p>
 
 
     <p>
 
-        Project information, research outputs and updates
+        Research images and figures are provided for project
+        communication. Please contact the researcher before reuse.
 
     </p>
 
 </footer>
+
+
+<!-- =========================================================
+     CASUAL IMAGE-SAVING DETERRENCE
+
+     IMPORTANT:
+     This does NOT provide true security.
+     A browser must still retrieve public image data in order
+     to display it.
+     ========================================================= -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+
+    /*
+    ------------------------------------------------------------
+    Prevent right-click context menus on protected media only.
+    This avoids unnecessarily disabling the context menu across
+    the rest of the website.
+    ------------------------------------------------------------
+    */
+
+    document.querySelectorAll(
+        ".protected-media"
+    ).forEach(function (element) {
+
+        element.addEventListener(
+            "contextmenu",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+    });
+
+
+    /*
+    ------------------------------------------------------------
+    Prevent browser drag-and-drop of images.
+    ------------------------------------------------------------
+    */
+
+    document.querySelectorAll(
+        ".protected-media img"
+    ).forEach(function (image) {
+
+        image.setAttribute(
+            "draggable",
+            "false"
+        );
+
+
+        image.addEventListener(
+            "dragstart",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+    });
+
+
+    /*
+    ------------------------------------------------------------
+    Prevent selection starting within protected media.
+    ------------------------------------------------------------
+    */
+
+    document.querySelectorAll(
+        ".protected-media"
+    ).forEach(function (element) {
+
+        element.addEventListener(
+            "selectstart",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+    });
+
+
+    /*
+    ------------------------------------------------------------
+    Prevent long-press touch callout on protected media where
+    supported by the browser.
+    ------------------------------------------------------------
+    */
+
+    document.querySelectorAll(
+        ".protected-media"
+    ).forEach(function (element) {
+
+        element.addEventListener(
+            "touchstart",
+            function () {
+                /*
+                CSS handles the actual touch-callout suppression.
+                This listener simply ensures the protected-media
+                elements are treated consistently by browsers.
+                */
+            },
+            {
+                passive: true
+            }
+        );
+
+    });
+
+
+})();
+
+</script>
 
 
 </body>
