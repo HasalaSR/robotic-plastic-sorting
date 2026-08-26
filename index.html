@@ -1740,6 +1740,88 @@
 
 
         /* ======================================================
+           ACKNOWLEDGEMENTS
+           ====================================================== */
+
+        .acknowledgements-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 22px;
+
+            margin-top: 30px;
+        }
+
+
+        .acknowledgement-card {
+
+            padding: 28px;
+
+            background: var(--white);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 9px;
+
+            box-shadow:
+                0 3px 14px
+                rgba(0, 31, 69, 0.055);
+        }
+
+
+        .acknowledgement-card h3 {
+
+            margin:
+                0 0 16px;
+
+            font-size: 1.2rem;
+        }
+
+
+        .acknowledgement-card ul {
+
+            margin: 0;
+
+            padding-left: 1.2rem;
+
+            color: #35475B;
+        }
+
+
+        .acknowledgement-card li {
+
+            margin-bottom: 10px;
+
+            line-height: 1.55;
+        }
+
+
+        .acknowledgement-card li:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .grant-number {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: var(--blue-grey);
+
+            font-size: 0.9rem;
+        }
+
+
+        /* ======================================================
            FOOTER
            ====================================================== */
 
@@ -2195,6 +2277,12 @@
 
 
             .team-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .acknowledgements-grid {
 
                 grid-template-columns: 1fr;
             }
@@ -3626,6 +3714,99 @@
 
 
             </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ACKNOWLEDGEMENTS
+     ========================================================= -->
+
+<section
+    id="acknowledgements"
+    class="muted-section"
+>
+
+    <div class="section-inner">
+
+
+        <div class="section-label">
+            Acknowledgements
+        </div>
+
+
+        <h2>
+            Project Support and Industry Collaboration
+        </h2>
+
+
+        <p class="lead">
+
+            This research project was supported through
+            Australian Government funding and collaboration
+            with industry partners in the Australian
+            plastics recycling sector.
+
+        </p>
+
+
+        <div class="acknowledgements-grid">
+
+
+            <article class="acknowledgement-card">
+
+                <h3>
+                    Funding Support
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Australian Federal Government
+                    </li>
+
+                    <li>
+
+                        Cooperative Research Centres Projects
+                        (CRC-P) Grant Scheme
+
+                        <span class="grant-number">
+                            Grant number: CRCPX000010
+                        </span>
+
+                    </li>
+
+                </ul>
+
+            </article>
+
+
+            <article class="acknowledgement-card">
+
+                <h3>
+                    Industry Partners
+                </h3>
+
+                <ul>
+
+                    <li>
+                        Advanced Circular Polymers,
+                        Melbourne, Australia
+                    </li>
+
+                    <li>
+                        Circular Plastics Australia
+                    </li>
+
+                </ul>
+
+            </article>
+
 
         </div>
 
