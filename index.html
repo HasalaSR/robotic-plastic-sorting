@@ -3235,9 +3235,13 @@
         <div class="video-wrapper">
 
             <video
+                id="demonstrationVideo"
                 controls
+                controlsList="nodownload noremoteplayback"
+                disablePictureInPicture
                 playsinline
                 preload="metadata"
+                draggable="false"
                 aria-label="AI-enabled robotic plastic sorting system demonstration"
             >
 
@@ -3260,14 +3264,6 @@
             Demonstration of the complete perception-to-action
             robotic sorting system operating with real
             post-consumer plastic waste.
-
-            <a
-                href="assets/videos/Industrial_Waste_Sorting_Setup_Unimelb.mp4"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Open video in a new tab
-            </a>.
 
         </p>
 
@@ -3851,6 +3847,53 @@
             );
 
         });
+
+
+    /* ========================================================
+       CASUAL VIDEO-DOWNLOAD DETERRENCE
+
+       This removes the standard download control in browsers
+       that support controlsList="nodownload" and blocks the
+       ordinary right-click "Save video as..." route.
+
+       Important: a video delivered to a public browser cannot
+       be made technically impossible to retrieve.
+       ======================================================== */
+
+    const demonstrationVideo =
+        document.getElementById(
+            "demonstrationVideo"
+        );
+
+
+    if (demonstrationVideo) {
+
+        demonstrationVideo.addEventListener(
+            "contextmenu",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+        demonstrationVideo.addEventListener(
+            "dragstart",
+            function (event) {
+
+                event.preventDefault();
+
+            }
+        );
+
+
+        demonstrationVideo.setAttribute(
+            "draggable",
+            "false"
+        );
+
+    }
 
 
 })();
