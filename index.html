@@ -1321,7 +1321,8 @@
         }
 
 
-        .video-wrapper iframe {
+        .video-wrapper iframe,
+        .video-wrapper video {
 
             position: absolute;
 
@@ -1332,6 +1333,38 @@
             height: 100%;
 
             border: 0;
+        }
+
+
+        .video-wrapper video {
+
+            object-fit: contain;
+        }
+
+
+        .video-note {
+
+            margin:
+                14px auto
+                0;
+
+            max-width: 760px;
+
+            color: var(--blue-grey);
+
+            text-align: center;
+
+            font-size: 0.9rem;
+
+            line-height: 1.5;
+        }
+
+
+        .video-note a {
+
+            color: var(--navy);
+
+            font-weight: 750;
         }
 
 
@@ -3199,61 +3232,44 @@
         </h2>
 
 
-        <div class="video-card">
-
-            <div>
-
-                <div class="play-symbol">
-                    ▶
-                </div>
-
-
-                <strong>
-                    Demonstration Video Coming Soon
-                </strong>
-
-
-                <span>
-
-                    A demonstration of the complete
-                    perception-to-action system will be added
-                    here without changing the QR code printed
-                    on the research poster.
-
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- ==================================================
-             WHEN THE YOUTUBE VIDEO IS READY:
-
-             Delete the "video-card" above and insert:
-
         <div class="video-wrapper">
 
-            <iframe
-                src="https://www.youtube.com/embed/VIDEO_ID"
-                title="AI-enabled robotic plastic sorting demonstration"
-                loading="lazy"
-                allow="
-                    accelerometer;
-                    autoplay;
-                    clipboard-write;
-                    encrypted-media;
-                    gyroscope;
-                    picture-in-picture;
-                    web-share
-                "
-                allowfullscreen
-            ></iframe>
+            <video
+                controls
+                playsinline
+                preload="metadata"
+                aria-label="AI-enabled robotic plastic sorting system demonstration"
+            >
+
+                <source
+                    src="assets/videos/Industrial_Waste_Sorting_Setup_Unimelb.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support HTML5 video.
+                You can open the video directly using the
+                link below.
+
+            </video>
 
         </div>
 
-             Replace VIDEO_ID with the actual YouTube video ID.
-             ================================================== -->
+
+        <p class="video-note">
+
+            Demonstration of the complete perception-to-action
+            robotic sorting system operating with real
+            post-consumer plastic waste.
+
+            <a
+                href="assets/videos/Industrial_Waste_Sorting_Setup_Unimelb.mp4"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open video in a new tab
+            </a>.
+
+        </p>
 
     </div>
 
@@ -3281,10 +3297,9 @@
 
         <p class="lead">
 
-            Publications, datasets, poster material and
-            supplementary resources associated with the
-            project will be linked here as they become
-            publicly available.
+            Explore the research poster, public dataset,
+            demonstration material and other outputs
+            associated with this project.
 
         </p>
 
@@ -3301,14 +3316,20 @@
                 <p>
 
                     FEIT Graduate Research Showcase poster
-                    presenting the end-to-end system and
-                    key experimental findings.
+                    presenting the end-to-end robotic sorting
+                    system and key experimental findings.
 
                 </p>
 
-                <span class="button disabled">
-                    Coming Soon
-                </span>
+                <a
+                    class="button"
+                    href="assets/documents/robotic-plastic-sorting-poster-2026.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View the research poster PDF"
+                >
+                    View Poster
+                </a>
 
             </article>
 
@@ -3321,15 +3342,21 @@
 
                 <p>
 
-                    Public post-consumer waste dataset and
-                    associated annotation material used in
-                    the research.
+                    Public post-consumer plastic waste image
+                    dataset and associated annotation material
+                    used in this research.
 
                 </p>
 
-                <span class="button disabled">
-                    Link Coming Soon
-                </span>
+                <a
+                    class="button green"
+                    href="https://doi.org/10.5281/zenodo.20772154"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Access the research dataset on Zenodo"
+                >
+                    Access Dataset
+                </a>
 
             </article>
 
@@ -3357,19 +3384,24 @@
             <article class="resource">
 
                 <h3>
-                    Additional Material
+                    Demonstration Video
                 </h3>
 
                 <p>
 
-                    Supplementary demonstrations, technical
-                    material and further project resources.
+                    Watch the robotic sorting system operating
+                    from AI-based perception through conveyor
+                    tracking and physical object recovery.
 
                 </p>
 
-                <span class="button disabled">
-                    Coming Soon
-                </span>
+                <a
+                    class="button"
+                    href="#video"
+                    aria-label="Watch the robotic sorting system demonstration"
+                >
+                    Watch Video
+                </a>
 
             </article>
 
